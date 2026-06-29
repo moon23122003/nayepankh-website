@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naye Pankh Foundation — New Wings for a Changing India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1A33;
+    --ink-soft:#2A2750;
+    --dawn:#F6A53D;
+    --dawn-soft:#FBC988;
+    --ember:#E2572B;
+    --cream:#FBF5EA;
+    --paper:#FFFCF6;
+    --text:#241F3D;
+    --text-soft:#5B5677;
+    --teal:#2F8F7E;
+    --line:rgba(36,31,61,0.12);
+    --shadow:0 18px 50px -20px rgba(27,26,51,0.35);
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--cream);color:var(--text);font-family:'Work Sans',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.serif{font-family:'Fraunces',serif;}
+  h1,h2,h3{margin:0;color:var(--ink);font-weight:600;letter-spacing:-0.01em;}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--ember);}
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ember);display:inline-block;}
+  .eyebrow.on-dark{color:var(--dawn);}
+  .eyebrow.on-dark::before{background:var(--dawn);}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:600;font-size:15px;border:1.5px solid transparent;cursor:pointer;transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, background .25s, color .25s, border-color .25s;font-family:'Work Sans',sans-serif;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn:active{transform:translateY(0);}
+  .btn-primary{background:var(--ember);color:#fff;box-shadow:0 10px 24px -10px rgba(226,87,43,0.7);}
+  .btn-primary:hover{background:#cb4a21;}
+  .btn-ghost{border-color:rgba(255,255,255,0.35);color:#fff;}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
+  .btn-dark{border-color:var(--ink);color:var(--ink);}
+  .btn-dark:hover{background:var(--ink);color:#fff;}
+  .btn[disabled]{opacity:.55;cursor:default;transform:none !important;}
+
+  /* ---------- NAV ---------- */
+  header.site{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(27,26,51,0.0);transition:background .35s, box-shadow .35s, backdrop-filter .35s;padding:20px 0;}
+  header.site.scrolled{background:rgba(27,26,51,0.92);backdrop-filter:blur(10px);box-shadow:0 6px 30px -10px rgba(0,0,0,0.3);padding:13px 0;}
+  nav.bar{display:flex;align-items:center;justify-content:space-between;}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:21px;color:#fff;letter-spacing:-0.01em;}
+  .logo .mark{width:30px;height:30px;flex-shrink:0;}
+  .navlinks{display:flex;align-items:center;gap:6px;}
+  .navlinks button{background:none;border:none;font-family:'Work Sans',sans-serif;color:rgba(255,255,255,0.78);font-size:14.5px;font-weight:600;padding:9px 15px;border-radius:999px;cursor:pointer;transition:color .2s, background .2s;}
+  .navlinks button:hover{color:#fff;background:rgba(255,255,255,0.08);}
+  .navlinks button.active{color:var(--ink);background:var(--dawn);}
+  .nav-cta{display:flex;align-items:center;gap:10px;}
+  .burger{display:none;width:42px;height:42px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.3);background:none;cursor:pointer;position:relative;flex-shrink:0;}
+  .burger span{position:absolute;left:11px;right:11px;height:1.6px;background:#fff;transition:transform .25s, opacity .25s;}
+  .burger span:nth-child(1){top:15px;}
+  .burger span:nth-child(2){top:21px;}
+  .burger span:nth-child(3){top:27px;}
+  .burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .burger.open span:nth-child(2){opacity:0;}
+  .burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+  .mobile-menu{display:none;position:fixed;inset:0;background:var(--ink);z-index:99;padding:110px 30px 40px;flex-direction:column;gap:6px;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu button{background:none;border:none;text-align:left;color:#fff;font-family:'Fraunces',serif;font-size:30px;padding:14px 4px;border-bottom:1px solid rgba(255,255,255,0.12);cursor:pointer;}
+
+  /* ---------- PAGES ---------- */
+  .page{display:none;}
+  .page.active{display:block;animation:pageIn .5s cubic-bezier(.2,.8,.2,1);}
+  @keyframes pageIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+  /* ---------- HERO ---------- */
+  .hero{background:radial-gradient(ellipse 90% 70% at 75% 0%, #38326b 0%, var(--ink) 55%);position:relative;overflow:hidden;padding:165px 0 90px;color:#fff;}
+  .hero .hero-top{display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;position:relative;z-index:2;}
+  .hero h1{color:#fff;font-size:clamp(40px,6vw,68px);line-height:1.04;margin:18px 0 22px;font-weight:600;}
+  .hero h1 em{font-style:normal;color:var(--dawn);}
+  .hero p.lead{font-size:18px;color:rgba(255,255,255,0.72);max-width:480px;margin-bottom:34px;}
+  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero-art{position:relative;height:420px;}
+  .hero-stat-strip{border-top:1px solid rgba(255,255,255,0.14);margin-top:70px;padding-top:34px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:2;}
+  .stat .num{font-family:'Fraunces',serif;font-size:clamp(28px,3.4vw,40px);color:var(--dawn);font-weight:600;}
+  .stat .lbl{font-size:13px;color:rgba(255,255,255,0.6);margin-top:4px;letter-spacing:.02em;}
+  .bg-glow{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;z-index:1;}
+
+  /* feather/wing svg */
+  .wing-feather{transform-origin:4px 50%;}
+
+  /* ---------- SECTIONS GENERIC ---------- */
+  section{padding:96px 0;}
+  .page{padding:0;}
+  .section-head{max-width:640px;margin-bottom:54px;}
+  .section-head h2{font-size:clamp(30px,4vw,44px);margin-top:14px;line-height:1.12;}
+  .section-head p{margin-top:16px;font-size:16.5px;color:var(--text-soft);}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* origin/mission on home */
+  .origin{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:50px;display:grid;grid-template-columns:0.9fr 1.1fr;gap:50px;align-items:center;}
+  .origin .quote-mark{font-family:'Fraunces',serif;font-size:90px;color:var(--dawn-soft);line-height:.5;margin-bottom:10px;}
+  .origin h3{font-size:26px;margin-bottom:14px;}
+  .origin p{color:var(--text-soft);font-size:15.5px;}
+  .origin a.link{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-weight:600;color:var(--ember);font-size:14.5px;}
+
+  .founder{background:var(--ink);border-radius:28px;padding:64px;color:#fff;text-align:center;position:relative;overflow:hidden;}
+  .founder blockquote{font-family:'Fraunces',serif;font-size:clamp(24px,3vw,34px);font-weight:500;max-width:780px;margin:0 auto 22px;line-height:1.3;}
+  .founder cite{font-size:14px;color:rgba(255,255,255,.6);font-style:normal;}
+
+  /* ---------- ABOUT PAGE ---------- */
+  .timeline{position:relative;padding-left:34px;border-left:2px solid var(--line);display:flex;flex-direction:column;gap:38px;}
+  .t-item{position:relative;}
+  .t-item::before{content:"";position:absolute;left:-41px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--dawn);border:3px solid var(--cream);box-shadow:0 0 0 2px var(--ember);}
+  .t-item .t-date{font-family:'Fraunces',serif;color:var(--ember);font-weight:700;font-size:15px;}
+  .t-item h4{font-size:19px;margin:6px 0 6px;}
+  .t-item p{color:var(--text-soft);font-size:15px;max-width:560px;}
+  .press-strip{margin-top:80px;border-top:1px solid var(--line);padding-top:34px;}
+  .press-strip .lbl{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-soft);margin-bottom:18px;display:block;}
+  .press-row{display:flex;gap:40px;flex-wrap:wrap;font-family:'Fraunces',serif;font-size:20px;color:var(--text-soft);opacity:.85;}
+
+  /* ---------- PROGRAMS ---------- */
+  .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .pillar{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:32px 26px;transition:transform .3s, box-shadow .3s, border-color .3s;cursor:pointer;position:relative;overflow:hidden;}
+  .pillar:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent;}
+  .pillar .icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;}
+  .pillar h3{font-size:19px;margin-bottom:10px;}
+  .pillar p{font-size:14.5px;color:var(--text-soft);}
+  .pillar .more{font-size:13px;font-weight:600;color:var(--ember);margin-top:14px;display:inline-flex;align-items:center;gap:6px;opacity:0;transform:translateY(4px);transition:opacity .25s, transform .25s;}
+  .pillar:hover .more{opacity:1;transform:translateY(0);}
+
+  /* ---------- INVOLVE ---------- */
+  .paths{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .path-card{border-radius:24px;padding:36px 30px;color:#fff;display:flex;flex-direction:column;gap:14px;min-height:260px;}
+  .path-card h3{color:#fff;font-size:23px;}
+  .path-card p{color:rgba(255,255,255,0.82);font-size:14.5px;flex-grow:1;}
+  .path-card .btn{align-self:flex-start;}
+
+  .calc{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:46px;margin-top:70px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  .calc h3{font-size:24px;margin-bottom:10px;}
+  .calc p.sub{color:var(--text-soft);font-size:14.5px;margin-bottom:24px;}
+  .calc-input{display:flex;align-items:center;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:4px 4px 4px 18px;margin-bottom:18px;}
+  .calc-input span{font-family:'Fraunces',serif;font-weight:600;color:var(--text-soft);}
+  .calc-input input{border:none;outline:none;font-family:'Fraunces',serif;font-size:24px;padding:12px 10px;width:100%;color:var(--ink);background:none;}
+  .calc-slider{width:100%;accent-color:var(--ember);margin-bottom:6px;}
+  .calc-result{background:var(--ink);border-radius:20px;padding:30px;color:#fff;}
+  .calc-result .row{display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.12);}
+  .calc-result .row:last-child{border-bottom:none;}
+  .calc-result .row .v{font-family:'Fraunces',serif;font-size:21px;color:var(--dawn);}
+  .calc-result .row.total .v{color:#fff;font-size:25px;}
+  .calc-note{font-size:12px;color:var(--text-soft);margin-top:14px;line-height:1.5;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+  .info-row{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);}
+  .info-row .ic{width:40px;height:40px;border-radius:11px;background:var(--dawn-soft);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+  .info-row h4{font-size:15px;margin-bottom:4px;}
+  .info-row p,.info-row a{color:var(--text-soft);font-size:14.5px;}
+  .info-row a:hover{color:var(--ember);}
+  .social-row{display:flex;gap:12px;margin-top:26px;}
+  .social-row a{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:16px;transition:background .2s,color .2s,border-color .2s;}
+  .social-row a:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+  form.cform{display:flex;flex-direction:column;gap:16px;}
+  .field{display:flex;flex-direction:column;gap:7px;}
+  .field label{font-size:12.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--text-soft);}
+  .field input,.field textarea,.field select{font-family:'Work Sans',sans-serif;font-size:15px;padding:13px 16px;border-radius:12px;border:1.5px solid var(--line);background:#fff;outline:none;transition:border-color .2s;resize:vertical;color:var(--text);}
+  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--ember);}
+  .form-msg{display:none;background:#e9f5ee;border:1px solid #bfe3cc;color:#1f6e44;padding:14px 18px;border-radius:12px;font-size:14px;font-weight:600;}
+  .form-msg.show{display:block;animation:pageIn .4s;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink);color:rgba(255,255,255,0.65);padding:64px 0 30px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:50px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .foot-grid h4{color:#fff;font-size:14px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px;}
+  .foot-grid a, .foot-grid p{display:block;font-size:14.5px;margin-bottom:10px;color:rgba(255,255,255,0.65);}
+  .foot-grid a:hover{color:var(--dawn);}
+  .foot-logo{display:flex;align-items:center;gap:10px;color:#fff;font-family:'Fraunces',serif;font-size:21px;font-weight:700;margin-bottom:14px;}
+  .foot-bottom{display:flex;justify-content:space-between;padding-top:26px;font-size:13px;flex-wrap:wrap;gap:10px;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:980px){
+    .navlinks{display:none;}
+    .burger{display:block;}
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-art{height:280px;order:-1;}
+    .hero-stat-strip{grid-template-columns:repeat(2,1fr);row-gap:30px;}
+    .origin{grid-template-columns:1fr;padding:34px;}
+    .pillars{grid-template-columns:repeat(2,1fr);}
+    .paths{grid-template-columns:1fr;}
+    .calc{grid-template-columns:1fr;padding:30px;}
+    .contact-grid{grid-template-columns:1fr;gap:40px;}
+    .foot-grid{grid-template-columns:1fr;gap:30px;}
+    .founder{padding:40px 26px;}
+  }
+  @media (max-width:600px){
+    .pillars{grid-template-columns:1fr;}
+    section{padding:70px 0;}
+    .hero{padding:140px 0 60px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site" id="siteHeader">
+  <div class="wrap">
+    <nav class="bar">
+      <div class="logo">
+        <svg class="mark" viewBox="0 0 32 32" fill="none"><path d="M16 29C16 29 6 23.5 6 14.5C6 9.8 9.5 7 13 7C14.8 7 16 8.3 16 8.3C16 8.3 17.2 7 19 7C22.5 7 26 9.8 26 14.5C26 23.5 16 29 16 29Z" fill="#F6A53D"/></svg>
+        Naye Pankh
+      </div>
+      <div class="navlinks" id="navlinks">
+        <button data-page="home" class="active">Home</button>
+        <button data-page="about">Our Story</button>
+        <button data-page="programs">Programs</button>
+        <button data-page="involve">Get Involved</button>
+        <button data-page="contact">Contact</button>
+      </div>
+      <div class="nav-cta">
+        <button class="btn btn-primary" style="padding:11px 22px;font-size:14px;" data-page="involve">Donate</button>
+        <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button data-page="home">Home</button>
+  <button data-page="about">Our Story</button>
+  <button data-page="programs">Programs</button>
+  <button data-page="involve">Get Involved</button>
+  <button data-page="contact">Contact</button>
+</div>
+
+<!-- ================= HOME ================= -->
+<main>
+<section class="page active" id="page-home">
+
+  <div class="hero">
+    <div class="bg-glow" style="width:480px;height:480px;background:#E2572B;top:-180px;right:-120px;"></div>
+    <div class="bg-glow" style="width:320px;height:320px;background:#2F8F7E;bottom:-100px;left:10%;opacity:.25;"></div>
+    <div class="wrap hero-top">
+      <div>
+        <span class="eyebrow on-dark">UP Govt. Registered NGO &nbsp;·&nbsp; 80G &amp; 12A &nbsp;·&nbsp; Kanpur</span>
+        <h1>New wings for<br>a changing <em>India.</em></h1>
+        <p class="lead">Naye Pankh means &ldquo;new wings.&rdquo; Started by a group of schoolkids in the middle of a pandemic, we're now one of India's largest student-led foundations — feeding the hungry, restoring dignity, and putting children back in school.</p>
+        <div class="cta-row">
+          <button class="btn btn-primary" data-page="involve">Volunteer with us →</button>
+          <button class="btn btn-ghost" data-page="programs">See our work</button>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg id="wingSvg" viewBox="0 0 360 420" width="100%" height="100%">
+          <g id="featherGroup"></g>
+        </svg>
+      </div>
+    </div>
+    <div class="wrap hero-stat-strip">
+      <div class="stat reveal"><div class="num" data-count="200000" data-suffix="+">0</div><div class="lbl">Lives touched</div></div>
+      <div class="stat reveal"><div class="num" data-count="30000" data-suffix="+">0</div><div class="lbl">Interns trained</div></div>
+      <div class="stat reveal"><div class="num" data-count="4">0</div><div class="lbl">Cities active in</div></div>
+      <div class="stat reveal"><div class="num" data-count="2021" data-nogroup="1">0</div><div class="lbl">Year founded</div></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap origin reveal">
+      <div>
+        <div class="quote-mark">“</div>
+        <h3>Why &ldquo;New Wings&rdquo;?</h3>
+        <p>We began in 2020 as a handful of high-schoolers trying to do something — anything — during the pandemic. On 28 March 2021 we made it official. The name Naye Pankh stuck because that's exactly what we wanted to give people: a fresh start, and the lift to get there.</p>
+        <a class="link" data-page="about">Read our full story →</a>
+      </div>
+      <div>
+        <p style="font-family:'Fraunces',serif;font-size:21px;color:var(--ink);line-height:1.5;">"Think global, act local." Every meal, every sanitary pad, every school bag we hand out is small on its own — but together they're how <strong>Badalte Bharat ki Nayi Tasveer</strong> — the new picture of a changing India — actually gets painted.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="founder reveal">
+        <span class="eyebrow on-dark" style="margin-bottom:18px;">Founder &amp; President</span>
+        <blockquote>"If we all do something, then together there is no problem that we cannot solve."</blockquote>
+        <cite>— Naye Pankh Foundation</cite>
+      </div>
+    </div>
+  </section>
+
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="page" id="page-about">
+  <section style="padding-top:160px;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Our Story</span>
+        <h2>Started by schoolkids.<br>Built into a movement.</h2>
+        <p>NayePankh Foundation is a UP Government, 80G &amp; 12A registered NGO, and one of the biggest student-led organisations in India — run almost entirely by people who are still in school or college.</p>
+      </div>
+
+      <div class="timeline reveal">
+        <div class="t-item">
+          <div class="t-date">2020</div>
+          <h4>An idea, sparked by a crisis</h4>
+          <p>As COVID-19 tore through the country, a small group of high-schoolers in Kanpur decided to use whatever they had — time, energy, a bit of pocket money — to help the people the pandemic was hitting hardest.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-date">28 March 2021</div>
+          <h4>Naye Pankh officially takes flight</h4>
+          <p>What started as informal relief work became NayePankh Foundation — "giving wings" to the underprivileged. The team grew beyond one school, drawing students from across the city and state.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-date">2021 – 2022</div>
+          <h4>Beyond Kanpur</h4>
+          <p>Operations expanded into Ghaziabad and other cities, and the focus widened from emergency food relief to four ongoing pillars of work: food, hygiene, clothing and education.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-date">Today</div>
+          <h4>12A &amp; 80G certified, 200,000+ people reached</h4>
+          <p>Every donation to Naye Pankh now carries a 50% income-tax exemption under Section 80G. More than two lakh people — and a fair number of street animals — have been helped along the way, with 30,000+ students trained through our internship programme.</p>
+        </div>
+      </div>
+
+      <div class="press-strip reveal">
+        <span class="lbl">As featured in</span>
+        <div class="press-row">
+          <span>The Pioneer</span><span>Dainik Jagran</span><span>Hindustan</span><span>NITI Aayog Darpan</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ================= PROGRAMS ================= -->
+<section class="page" id="page-programs">
+  <section style="padding-top:160px;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">What We Do</span>
+        <h2>Four ways we give people their wings back.</h2>
+        <p>Every programme answers one practical, everyday problem — hunger, dignity, warmth or opportunity — for communities who are usually last in line for all four.</p>
+      </div>
+
+      <div class="pillars reveal">
+        <div class="pillar">
+          <div class="icon" style="background:#FCE7D6;">🍲</div>
+          <h3>Food for All</h3>
+          <p>Regular meal drives for underprivileged families on the street — and for the strays nobody else feeds either.</p>
+          <span class="more">Ration &amp; meal drives →</span>
+        </div>
+        <div class="pillar">
+          <div class="icon" style="background:#FBDDE3;">🩷</div>
+          <h3>Dignity &amp; Hygiene</h3>
+          <p>Free sanitary napkins and honest, stigma-free conversations about periods for women and girls who are usually told to stay silent.</p>
+          <span class="more">Hygiene awareness drives →</span>
+        </div>
+        <div class="pillar">
+          <div class="icon" style="background:#DCE7FB;">👕</div>
+          <h3>Clothing Drives</h3>
+          <p>Collecting and distributing warm, wearable clothing to families heading into winter with nothing put aside.</p>
+          <span class="more">Seasonal clothing drives →</span>
+        </div>
+        <div class="pillar">
+          <div class="icon" style="background:#DDEFE9;">📚</div>
+          <h3>Education First</h3>
+          <p>Books, school supplies and informal tuition support to keep underprivileged children in the classroom, not on the street.</p>
+          <span class="more">Learning support →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ================= INVOLVE ================= -->
+<section class="page" id="page-involve">
+  <section style="padding-top:160px;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Join The Movement</span>
+        <h2>Give time, give skills, or give what you can.</h2>
+        <p>Naye Pankh is run almost entirely by volunteers and interns. There's a way to contribute whatever your situation looks like right now.</p>
+      </div>
+
+      <div class="paths reveal">
+        <div class="path-card" style="background:linear-gradient(150deg,#E2572B,#c2431a);">
+          <h3>Volunteer</h3>
+          <p>Join a food, clothing or hygiene drive on the ground in Kanpur, Ghaziabad and nearby cities. No experience required — just turn up and help.</p>
+          <a class="btn btn-ghost" href="tel:+918318500748">Call to join a drive</a>
+        </div>
+        <div class="path-card" style="background:linear-gradient(150deg,#2F8F7E,#21655a);">
+          <h3>Intern</h3>
+          <p>Build real skills — design, content, outreach, web dev — while working on something that actually matters. 30,000+ students already have.</p>
+          <a class="btn btn-ghost" href="https://nayepankh.com" target="_blank" rel="noopener">See open roles ↗</a>
+        </div>
+        <div class="path-card" style="background:linear-gradient(150deg,#3A3568,#1B1A33);">
+          <h3>Donate</h3>
+          <p>Every rupee is tax-deductible under 80G. Use the calculator below to see exactly what your contribution costs you after tax relief.</p>
+          <a class="btn btn-ghost" href="https://nayepankh.com/donate" target="_blank" rel="noopener">Go to official donate page ↗</a>
+        </div>
+      </div>
+
+      <div class="calc reveal">
+        <div>
+          <h3>What does your donation really cost?</h3>
+          <p class="sub">Donations to Naye Pankh qualify for 50% tax relief under Section 80G. Drag the slider or type an amount to see your real cost.</p>
+          <div class="calc-input">
+            <span>₹</span>
+            <input type="number" id="donAmount" value="2000" min="100" max="200000" step="100">
+          </div>
+          <input type="range" class="calc-slider" id="donSlider" min="100" max="20000" step="100" value="2000">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-soft);"><span>₹100</span><span>₹20,000+</span></div>
+        </div>
+        <div class="calc-result">
+          <div class="row"><span>You donate</span><span class="v" id="rDonate">₹2,000</span></div>
+          <div class="row"><span>Tax relief (80G, 50%)</span><span class="v" id="rRelief">₹1,000</span></div>
+          <div class="row total"><span>Your real cost</span><span class="v" id="rCost">₹1,000</span></div>
+          <p class="calc-note">Estimate only, assuming relief is capped at 50% of the donated amount as stated by Naye Pankh Foundation. Actual exemption depends on your total taxable income — please confirm with your tax advisor or the foundation directly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="page" id="page-contact">
+  <section style="padding-top:160px;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Get In Touch</span>
+        <h2>Let's talk wings.</h2>
+        <p>Whether you want to volunteer this weekend or just have a question — reach out, we reply ourselves.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="reveal">
+          <div class="info-row">
+            <div class="ic">📞</div>
+            <div><h4>Call</h4><a href="tel:+918318500748">+91 83185 00748</a></div>
+          </div>
+          <div class="info-row">
+            <div class="ic">💬</div>
+            <div><h4>WhatsApp</h4><a href="https://wa.me/916306266557" target="_blank" rel="noopener">+91 63062 66557</a></div>
+          </div>
+          <div class="info-row">
+            <div class="ic">📍</div>
+            <div><h4>Office</h4><p>104A/279 P. Road, Kanpur — 208012, Uttar Pradesh, India</p></div>
+          </div>
+          <div class="info-row">
+            <div class="ic">🌐</div>
+            <div><h4>Official website</h4><a href="https://nayepankh.com" target="_blank" rel="noopener">nayepankh.com ↗</a></div>
+          </div>
+          <div class="social-row">
+            <a href="https://www.instagram.com/nayepankhfoundation/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+            <a href="https://www.facebook.com/nayepankhfoundation/" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+            <a href="https://www.youtube.com/@nayepankhfoundation" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+            <a href="https://www.linkedin.com/company/nayepankh" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <form class="cform" id="contactForm">
+            <div class="field"><label for="cname">Name</label><input id="cname" required placeholder="Your full name"></div>
+            <div class="field"><label for="cemail">Email</label><input id="cemail" type="email" required placeholder="you@example.com"></div>
+            <div class="field"><label for="creason">I'm interested in</label>
+              <select id="creason">
+                <option>Volunteering</option>
+                <option>Internship programme</option>
+                <option>Donating</option>
+                <option>Media / Press</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="field"><label for="cmsg">Message</label><textarea id="cmsg" rows="4" required placeholder="Tell us a little about what you'd like to do"></textarea></div>
+            <button type="submit" class="btn btn-primary" style="justify-content:center;">Send message</button>
+            <div class="form-msg" id="formMsg">Thank you — your message has been noted. Our team will reach out within 2–3 days. 🪶</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none"><path d="M16 29C16 29 6 23.5 6 14.5C6 9.8 9.5 7 13 7C14.8 7 16 8.3 16 8.3C16 8.3 17.2 7 19 7C22.5 7 26 9.8 26 14.5C26 23.5 16 29 16 29Z" fill="#F6A53D"/></svg>
+          Naye Pankh Foundation
+        </div>
+        <p style="max-width:320px;">UP Govt. Registered &nbsp;·&nbsp; 80G &amp; 12A Certified &nbsp;·&nbsp; Badalte Bharat ki Nayi Tasveer.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a data-page="about">Our Story</a>
+        <a data-page="programs">Programs</a>
+        <a data-page="involve">Get Involved</a>
+        <a data-page="contact">Contact</a>
+      </div>
+      <div>
+        <h4>Reach us</h4>
+        <a href="tel:+918318500748">+91 83185 00748</a>
+        <a href="https://nayepankh.com" target="_blank" rel="noopener">nayepankh.com ↗</a>
+        <p>Kanpur, Uttar Pradesh</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>This is an unofficial concept site built to promote Naye Pankh Foundation's work.</span>
+      <span>For official donations, please visit nayepankh.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---------- NAV / ROUTER ----------
+  const pages = document.querySelectorAll('.page');
+  const navBtns = document.querySelectorAll('[data-page]');
+  function goPage(name){
+    pages.forEach(p => p.classList.toggle('active', p.id === 'page-'+name));
+    document.querySelectorAll('.navlinks button').forEach(b => b.classList.toggle('active', b.dataset.page === name));
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('burger').classList.remove('open');
+    window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+    history.replaceState(null,'','#'+name);
+    runReveal();
+  }
+  navBtns.forEach(b => b.addEventListener('click', () => goPage(b.dataset.page)));
+  window.addEventListener('DOMContentLoaded', () => {
+    const initial = location.hash.replace('#','') || 'home';
+    goPage(['home','about','programs','involve','contact'].includes(initial) ? initial : 'home');
+  });
+
+  // ---------- HEADER SCROLL STATE ----------
+  const header = document.getElementById('siteHeader');
+  document.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 30));
+
+  // ---------- MOBILE MENU ----------
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  // ---------- REVEAL ON SCROLL ----------
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+  }, {threshold:0.15});
+  function runReveal(){
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  }
+  // safety net: ensure nothing stays invisible if IO ever misses an element
+  setTimeout(() => document.querySelectorAll('.reveal').forEach(el => el.classList.add('in')), 2500);
+
+  const counters = document.querySelectorAll('[data-count]');
+  let countersDone = false;
+  function formatCount(n, suffix, nogroup){
+    let s = nogroup ? String(n) : n.toLocaleString('en-IN');
+    return s + (suffix || '');
+  }
+  function triggerCounters(){
+    if(countersDone) return;
+    countersDone = true;
+    counters.forEach(c => {
+      const target = parseInt(c.dataset.count, 10);
+      const suffix = c.dataset.suffix || '';
+      const nogroup = c.dataset.nogroup;
+      const dur = 1400;
+      const start = performance.now();
+      function step(t){
+        const p = Math.min(1, (t-start)/dur);
+        const eased = 1 - Math.pow(1-p, 3);
+        c.textContent = formatCount(Math.floor(eased*target), suffix, nogroup);
+        if(p<1) requestAnimationFrame(step); else c.textContent = formatCount(target, suffix, nogroup);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  const countIO = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) triggerCounters(); });
+  }, {threshold:0.4});
+  if(counters.length) countIO.observe(counters[0].closest('.hero-stat-strip'));
+  setTimeout(triggerCounters, 3000);
+
+  // ---------- WING SVG (signature element) ----------
+  (function(){
+    const g = document.getElementById('featherGroup');
+    const N = 9;
+    const cx = 70, cy = 380;
+    for(let i=0;i<N;i++){
+      const t = i/(N-1);
+      const angle = -85 + t*95; // fan from bottom to upper-right
+      const len = 230 - i*9;
+      const wid = 46 - i*2.6;
+      const hue = i%2===0 ? '#F6A53D' : '#E2572B';
+      const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+      const d = `M0,0 C ${len*0.25},${-wid} ${len*0.75},${-wid*0.9} ${len},0 C ${len*0.75},${wid*0.9} ${len*0.25},${wid} 0,0 Z`;
+      path.setAttribute('d', d);
+      path.setAttribute('fill', hue);
+      path.setAttribute('opacity', (0.55 + t*0.45).toFixed(2));
+      path.classList.add('wing-feather');
+      path.style.transform = `translate(${cx}px,${cy}px) rotate(${angle}deg) scale(0,1)`;
+      path.style.transformOrigin = '0px 0px';
+      path.style.transition = `transform 0.7s cubic-bezier(.2,.8,.2,1) ${i*70}ms`;
+      g.appendChild(path);
+      requestAnimationFrame(()=>{
+        setTimeout(()=>{ path.style.transform = `translate(${cx}px,${cy}px) rotate(${angle}deg) scale(1,1)`; }, 50);
+      });
+      // gentle ambient sway after entrance
+      setTimeout(()=>{
+        path.style.transition = 'transform 3.2s ease-in-out';
+        let swing = false;
+        setInterval(()=>{
+          swing = !swing;
+          const a2 = angle + (swing? 2.2 : -2.2);
+          path.style.transform = `translate(${cx}px,${cy}px) rotate(${a2}deg) scale(1,1)`;
+        }, 3200);
+      }, 900 + i*70);
+    }
+  })();
+
+  // ---------- DONATION CALCULATOR ----------
+  const donAmount = document.getElementById('donAmount');
+  const donSlider = document.getElementById('donSlider');
+  const rDonate = document.getElementById('rDonate');
+  const rRelief = document.getElementById('rRelief');
+  const rCost = document.getElementById('rCost');
+  function inr(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); }
+  function updateCalc(val){
+    val = Math.max(0, val||0);
+    rDonate.textContent = inr(val);
+    rRelief.textContent = inr(val*0.5);
+    rCost.textContent = inr(val*0.5);
+  }
+  donAmount.addEventListener('input', () => { donSlider.value = Math.min(donAmount.value,20000); updateCalc(parseFloat(donAmount.value)); });
+  donSlider.addEventListener('input', () => { donAmount.value = donSlider.value; updateCalc(parseFloat(donSlider.value)); });
+  updateCalc(2000);
+
+  // ---------- CONTACT FORM ----------
+  const form = document.getElementById('contactForm');
+  const formMsg = document.getElementById('formMsg');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    formMsg.classList.add('show');
+    form.querySelector('button[type=submit]').setAttribute('disabled','disabled');
+    form.querySelector('button[type=submit]').textContent = 'Message sent ✓';
+  });
+
+  runReveal();
+</script>
+</body>
+</html>
